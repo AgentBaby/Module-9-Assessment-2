@@ -1,0 +1,95 @@
+:root {
+  --ff-plum: #2a1233;
+  --ff-saffron: #ffb400;
+  --ff-basil: #2f7d4f;
+  --ff-blush: #fce8e4;
+  --ff-white: #ffffff;
+  --ff-text: #2b2230;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { font-family: "DM Sans", system-ui, sans-serif; color: var(--ff-text); background: var(--ff-white); }
+h1, h2, h3, h4, h5, .navbar-brand { font-family: "Bricolage Grotesque", "DM Sans", sans-serif; }
+
+/* Navbar */
+.ff-nav { background: rgba(42, 18, 51, .92); backdrop-filter: blur(6px); }
+.ff-nav .navbar-brand { color: var(--ff-saffron); font-weight: 800; font-size: 1.4rem; }
+.ff-nav .nav-link { color: #fff; }
+.ff-nav .nav-link:hover, .ff-nav .nav-link:focus { color: var(--ff-saffron); }
+.ff-nav .navbar-toggler { border-color: rgba(255,255,255,.5); }
+.ff-nav .navbar-toggler-icon { filter: invert(1); }
+
+/* Hero: add img/hero.jpg and it shows automatically */
+.ff-hero {
+  min-height: 100vh;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(42,18,51,.15) 0%, rgba(42,18,51,.85) 100%),
+    url("../img/hero.jpg") center / cover no-repeat,
+    linear-gradient(135deg, #5a2a6b, #c4412b);
+}
+.ff-hero-title { font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+.ff-hero-text { max-width: 36rem; margin-bottom: 1.5rem; }
+
+.btn-saffron { background: var(--ff-saffron); color: var(--ff-plum); font-weight: 700; border: 0; }
+.btn-saffron:hover, .btn-saffron:focus { background: #ffc633; color: var(--ff-plum); }
+
+/* Headings */
+.ff-h2 { font-weight: 800; letter-spacing: -.01em; color: var(--ff-plum); }
+
+/* Photo box with fallback (emoji shows if the image file is missing) */
+.photo {
+  position: relative; margin: 0; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--ff-blush), #f6c7bd);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo::after { content: attr(data-emoji); font-size: 3.5rem; position: absolute; }
+.photo img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+
+/* Filters */
+.ff-filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+.btn-filter { border: 2px solid var(--ff-plum); color: var(--ff-plum); border-radius: 50rem; font-weight: 500; background: transparent; }
+.btn-filter:hover { background: var(--ff-blush); color: var(--ff-plum); }
+.btn-filter.active { background: var(--ff-plum); color: #fff; }
+
+/* Review cards */
+.ff-card { border: 0; border-radius: 0; cursor: pointer; background: transparent; }
+.ff-card .photo { aspect-ratio: 1 / 1; }
+.ff-card .card-body { padding: 1rem 0 0; }
+.ff-card:hover .photo img, .ff-card:focus-visible .photo img { transform: scale(1.05); }
+.ff-card:focus-visible { outline: 3px solid var(--ff-saffron); outline-offset: 4px; }
+.ff-meta { color: var(--ff-basil); font-weight: 700; font-size: .9rem; }
+.ff-stars { color: var(--ff-saffron); letter-spacing: 2px; font-size: 1.1rem; }
+.review.hidden-review { display: none; }
+
+/* Gallery: mosaic grid, collapses to 2 columns on phones */
+.ff-gallery-section { background: var(--ff-blush); }
+.ff-gallery { display: grid; gap: .75rem; grid-template-columns: repeat(2, 1fr); }
+.ff-gallery .photo { aspect-ratio: 1 / 1; }
+.ff-gallery .photo:hover img { transform: scale(1.06); }
+@media (min-width: 768px) {
+  .ff-gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; }
+  .ff-gallery .photo { aspect-ratio: auto; }
+  .ff-gallery .g1 { grid-column: span 2; grid-row: span 2; }
+  .ff-gallery .g4 { grid-column: span 2; }
+}
+
+/* About */
+.ff-portrait { aspect-ratio: 4 / 5; border-radius: 50% 50% 0 0 / 40% 40% 0 0; }
+
+/* Subscribe */
+.ff-subscribe { background: var(--ff-plum); color: #fff; }
+.ff-subscribe .ff-h2 { color: #fff; }
+
+/* Footer */
+.ff-footer { background: #1a0a21; color: rgba(255,255,255,.75); font-size: .9rem; }
+
+/* Modal */
+#reviewModal .modal-content { border: 0; border-radius: 0; }
+#reviewModal .photo { aspect-ratio: 16 / 10; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .photo img { transition: none; }
+}
